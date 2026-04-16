@@ -1,0 +1,17 @@
+llm:
+  provider: "openai"
+  model: "gpt-4o-mini"
+  temperature: 0.7
+
+language:
+  default: "en"
+
+profile:
+  vector_db_url: "http://localhost:6333"
+  collection_name: "user_profile"
+
+cv:
+  output_dir: "cv_store"
+
+langsmith:
+  project: "cv-agent"
