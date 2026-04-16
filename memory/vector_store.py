@@ -114,3 +114,9 @@ class VectorStore:
             }
             for r in results
         ]
+    
+    def clear_collection(self):
+        """Clears all data from collection"""
+        self.client.delete_collection(self.collection_name)
+        print(f"🗑️  Collection '{self.collection_name}' cleared")
+        self._ensure_collection()
