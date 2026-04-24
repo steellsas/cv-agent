@@ -3,7 +3,7 @@ import pandas as pd
 from pathlib import Path
 from langchain_core.messages import HumanMessage
 from agents.llm_factory import get_llm
-from memory.vector_store import VectorStore
+from memory.vector_store import VectorStore, ProfileBlock
 import json
 
 LINKEDIN_EXTRACT_PROMPT = """You are extracting structured career information from a LinkedIn profile.
@@ -102,69 +102,85 @@ class LinkedInParser:
         return json.loads(raw.strip())
 
     def _save_to_store(self, data: dict) -> int:
-        """Saves extracted data to Qdrant"""
         saved = 0
 
         if data.get("summary"):
-            self.store.save(
-                text=data["summary"],
+            self.store.save_block(ProfileBlock(
                 category="personality",
-                metadata={"source": "linkedin", "type": "summary"}
-            )
+                text=data["summary"],
+                source=["linkedin"],
+                confidence="high",
+                metadata={"type": "summary"}
+            ))
             saved += 1
 
         if data.get("headline"):
-            self.store.save(
-                text=data["headline"],
+            self.store.save_block(ProfileBlock(
                 category="other",
-                metadata={"source": "linkedin", "type": "headline"}
-            )
+                text=data["headline"],
+                source=["linkedin"],
+                confidence="high",
+                metadata={"type": "headline"}
+            ))
             saved += 1
 
         for exp in data.get("work_experience", []):
             text = f"{exp.get('role')} at {exp.get('company')} ({exp.get('period')}): {exp.get('description')}"
-            self.store.save(
-                text=text,
+            self.store.save_block(ProfileBlock(
                 category="work_experience",
+                text=text,
+                source=["linkedin"],
+                confidence="high",
                 metadata={
-                    "source": "linkedin",
-                    "company": exp.get("company"),
-                    "role": exp.get("role")
+                    "company": exp.get("company", ""),
+                    "role": exp.get("role", ""),
+                    "period": exp.get("period", "")
                 }
-            )
+            ))
             saved += 1
 
         for edu in data.get("education", []):
             text = f"{edu.get('degree')} at {edu.get('institution')} ({edu.get('period')})"
-            self.store.save(
-                text=text,
+            self.store.save_block(ProfileBlock(
                 category="education",
-                metadata={"source": "linkedin"}
-            )
+                text=text,
+                source=["linkedin"],
+                confidence="high",
+                metadata={
+                    "institution": edu.get("institution", ""),
+                    "degree": edu.get("degree", "")
+                }
+            ))
             saved += 1
 
         if data.get("skills"):
-            self.store.save(
-                text="Skills: " + ", ".join(data["skills"]),
+            self.store.save_block(ProfileBlock(
                 category="tech_skill",
-                metadata={"source": "linkedin"}
-            )
+                text="Technical skills: " + ", ".join(data["skills"]),
+                source=["linkedin"],
+                confidence="high",
+                metadata={"type": "skills_list"}
+            ))
             saved += 1
 
         for proj in data.get("projects", []):
-            self.store.save(
-                text=f"Project: {proj.get('name')} — {proj.get('description')}",
+            self.store.save_block(ProfileBlock(
                 category="project",
-                metadata={"source": "linkedin"}
-            )
+                text=f"Project: {proj.get('name')} — {proj.get('description')}",
+                source=["linkedin"],
+                confidence="medium",
+                metadata={"name": proj.get("name", "")}
+            ))
             saved += 1
 
         if data.get("certifications"):
-            self.store.save(
-                text="Certifications: " + ", ".join(data["certifications"]),
+            self.store.save_block(ProfileBlock(
                 category="other",
-                metadata={"source": "linkedin", "type": "certifications"}
-            )
+                text="Certifications: " + ", ".join(data["certifications"]),
+                source=["linkedin"],
+                confidence="high",
+                metadata={"type": "certifications"}
+            ))
             saved += 1
 
         return saved
@@ -185,6 +201,7 @@ class LinkedInParser:
         if not csv_text and not pdf_text:
             print("❌ No LinkedIn data found")
             return {}
+        
 
         # Combine both sources
         combined = ""
@@ -196,6 +213,10 @@ class LinkedInParser:
         # Parse with LLM
         print("🤖 Analyzing with LLM...")
         data = self._parse_with_llm(combined)
+
+        print("\n=== PDF TEXT PREVIEW ===")
+        print(pdf_text[:1000])
+        print("=== END PREVIEW ===")
 
         # Save to Qdrant
         saved = self._save_to_store(data)

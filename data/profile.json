@@ -1,0 +1,217 @@
+{
+  "personal": {
+    "name": "Andrius Plienius",
+    "location": "Siauliu, Lithuania",
+    "email": "aplienius@gmail.com",
+    "phone": "370 683 21001",
+    "linkedin": "www.linkedin.com/in/andrius-plienius",
+    "github": "",
+    "headline": "AI & Machine Learning Engineer | Problem Solver | Python Backend Developer | Building Data-Driven Solutions"
+  },
+  "summary": "I am a Problem Solver who uses AI, Machine Learning, and Python as my primary tools. My goal is simple: to find the most efficient way to solve a client's pain point and bridge the gap between business needs and complex technical implementations.With a solid foundation in Information Technology (BSc from KTU) and 3 years of professional Python development experience (Django, API integrations), I have pivoted toward AI Engineering. My unique strength lies in a blend of deep 'soft skills' from over a decade in sales and the technical 'hard skills' required to build scalable AI solutions.My Technical Focus & Expertise:AI Engineering & LLMs: Designing and implementing AI agents, RAG systems, and complex workflows using LangGraph, LangChain, and OpenAI.Data Science & Analysis: Expert use of Python (Pandas, NumPy) for Exploratory Data Analysis (EDA) and Feature Engineering to ensure model accuracy.MLOps & Deployment: Experience in containerizing applications with Docker and deploying ML models (LightGBM, XGBoost) via FastAPI on Google Cloud Platform (GCP).Backend Development: Writing clean, scalable code with experience in Django, Odoo integrations, and automation scripts.",
+  "experience": [
+    {
+      "company": "Devoro UAB",
+      "role": "Junior Software Engineer",
+      "period": "2021-2024",
+      "location": "",
+      "description": "",
+      "achievements": [
+        "Built Django platform",
+        "Odoo & 3CX integration",
+        "Built a 'middleman' system to register all 3CX telephony system calls directly into Odoo ERP, centralizing client interaction history.",
+        "Successfully launched a production-ready system that digitized the service cycle, eliminating manual scheduling errors and ensuring all jobs were assigned within a 24-hour window."
+      ],
+      "skills_used": [
+        "Python",
+        "Django",
+        "API"
+      ],
+      "projects": [],
+      "impact": "",
+      "key_phrases": []
+    },
+    {
+      "company": "Freelance",
+      "role": "ML-Web-Apps",
+      "period": "June 2021 - November 2021",
+      "location": "Šiauliai",
+      "description": "Collaborated with a developer community focused on building web applications. Specialized in Back-End development, utilizing Django REST Framework for API logic and SQLite for database management.",
+      "achievements": [],
+      "skills_used": [
+        "Django REST Framework",
+        "SQLite"
+      ],
+      "projects": [],
+      "impact": "",
+      "key_phrases": []
+    },
+    {
+      "company": "BALTICUM TV",
+      "role": "Sales & Technical Support Specialist",
+      "period": "November 2005 - July 2021",
+      "location": "Šiauliai",
+      "description": "Combined technical expertise with proactive sales strategies, ensuring that complex telecommunications solutions reached the end customer.",
+      "achievements": [],
+      "skills_used": [
+        "Sales",
+        "Technical Support",
+        "Telecommunications"
+      ],
+      "projects": [],
+      "impact": "",
+      "key_phrases": []
+    }
+  ],
+  "education": [
+    {
+      "institution": "KTU",
+      "degree": "BSc",
+      "period": "",
+      "field": "Information Technology"
+    },
+    {
+      "institution": "Turing College",
+      "degree": "Data Scientist",
+      "period": "October 2024 - December 2025",
+      "field": ""
+    },
+    {
+      "institution": "Kaunas University of Technology",
+      "degree": "Bachelor's degree",
+      "period": "2001 - 2005",
+      "field": "Computer and Information Sciences and Support Services"
+    },
+    {
+      "institution": "University of Michigan",
+      "degree": "course",
+      "period": "",
+      "field": "Python 3 Programming Specialization"
+    },
+    {
+      "institution": "Software Development Academy",
+      "degree": "PYTHON FROM SCRATCH",
+      "period": "2020 - 2021",
+      "field": "Python / Django"
+    },
+    {
+      "institution": "Kaunas University of Technology (KTU)",
+      "degree": "Bachelor of Science in Information Technology",
+      "period": "",
+      "field": ""
+    }
+  ],
+  "projects": [
+    {
+      "name": "ISP AI Agent",
+      "description": "A customer service chatbot built with LangGraph and RAG.",
+      "tech_stack": [
+        "LangGraph",
+        "RAG"
+      ],
+      "outcome": "",
+      "url": "",
+      "source": "cv"
+    },
+    {
+      "name": "Credit Risk API",
+      "description": "An ML prediction API deployed on GCP using Docker.",
+      "tech_stack": [
+        "GCP",
+        "Docker"
+      ],
+      "outcome": "",
+      "url": "",
+      "source": "cv"
+    },
+    {
+      "name": "Spaceship Titanic",
+      "description": "Achieving a 0.79+ score on Kaggle using XGBoost and Optuna.",
+      "tech_stack": [
+        "XGBoost",
+        "Optuna"
+      ],
+      "outcome": "Achieved a 0.79+ score on Kaggle.",
+      "url": "",
+      "source": "cv"
+    }
+  ],
+  "skills": {
+    "technical": [
+      "Python",
+      "FastAPI",
+      "Django",
+      "Machine Learning",
+      "AI Engineering",
+      "API integrations",
+      "Data Science",
+      "Pandas",
+      "NumPy",
+      "MLOps",
+      "Docker",
+      "LightGBM",
+      "XGBoost",
+      "Google Cloud Platform (GCP)",
+      "Odoo",
+      "Exploratory Data Analysis",
+      "Feature Engineering",
+      "Deployment",
+      "Google Cloud Platform",
+      "Odoo integrations",
+      "Clean code",
+      "Scalable code"
+    ],
+    "familiar": [
+      "Docker",
+      "FastAPI",
+      "Odoo",
+      "LightGBM",
+      "XGBoost",
+      "LangGraph",
+      "LangChain",
+      "OpenAI",
+      "Pandas",
+      "NumPy",
+      "Odoo integrations",
+      "automation scripts"
+    ],
+    "soft": [
+      "problem solving",
+      "Communication",
+      "Sales",
+      "Problem Solver",
+      "Collaboration",
+      "Sales skills"
+    ],
+    "tools": [
+      "Google Cloud Platform",
+      "Pandas",
+      "NumPy",
+      "Docker",
+      "Odoo",
+      "3CX",
+      "LangGraph",
+      "LangChain",
+      "OpenAI",
+      "RAG",
+      "FastAPI"
+    ]
+  },
+  "certifications": [],
+  "personality": {
+    "traits": [
+      "Problem Solver"
+    ],
+    "work_style": "to find the most efficient way to solve a client's pain point and bridge the gap between business needs and complex technical implementations.",
+    "motivation": "to solve a client's pain point",
+    "authentic_phrases": [
+      "I am a Problem Solver who uses AI, Machine Learning, and Python as my primary tools.",
+      "My unique strength lies in a blend of deep 'soft skills' from over a decade in sales and the technical 'hard skills' required to build scalable AI solutions.",
+      "AI Engineer with a solid foundation in Information Technology and professional Python development experience."
+    ]
+  },
+  "languages": [],
+  "sources": [
+    "cv_pdf"
+  ]
+}

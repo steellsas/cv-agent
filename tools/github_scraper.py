@@ -1,7 +1,7 @@
 import os
 import requests
 from agents.llm_factory import get_llm
-from memory.vector_store import VectorStore
+from memory.vector_store import VectorStore,ProfileBlock
 from langchain_core.messages import HumanMessage
 
 GITHUB_EXTRACT_PROMPT = """You are extracting career-relevant information from a GitHub repository.
@@ -101,47 +101,42 @@ README:
             return {}
 
     def _save_repo(self, repo: dict, analysis: dict):
-        """Saves repository info to Qdrant"""
-        # Save project info
+        from memory.vector_store import ProfileBlock
+
         project_text = (
             f"Project: {repo['name']} — {analysis.get('description', repo.get('description', ''))}"
             f" Tech stack: {', '.join(analysis.get('tech_stack', []))}"
         )
-        self.store.save(
-            text=project_text,
+        self.store.save_block(ProfileBlock(
             category="project",
+            text=project_text,
+            source=["github"],
+            confidence="high",
             metadata={
-                "source": "github",
                 "name": repo["name"],
                 "url": repo.get("html_url", ""),
                 "complexity": analysis.get("complexity", "unknown"),
                 "stars": repo.get("stargazers_count", 0)
             }
-        )
+        ))
 
-        # Save tech stack separately
         if analysis.get("tech_stack"):
-            tech_text = f"GitHub project {repo['name']} uses: {', '.join(analysis['tech_stack'])}"
-            self.store.save(
-                text=tech_text,
+            self.store.save_block(ProfileBlock(
                 category="tech_skill",
-                metadata={
-                    "source": "github",
-                    "repo": repo["name"]
-                }
-            )
+                text=f"GitHub project {repo['name']} uses: {', '.join(analysis['tech_stack'])}",
+                source=["github"],
+                confidence="high",
+                metadata={"repo": repo["name"]}
+            ))
 
-        # Save highlights if present
         if analysis.get("highlights"):
-            self.store.save(
-                text=f"Project highlight — {repo['name']}: {analysis['highlights']}",
+            self.store.save_block(ProfileBlock(
                 category="other",
-                metadata={
-                    "source": "github",
-                    "type": "highlight",
-                    "repo": repo["name"]
-                }
-            )
+                text=f"Project highlight — {repo['name']}: {analysis['highlights']}",
+                source=["github"],
+                confidence="medium",
+                metadata={"type": "highlight", "repo": repo["name"]}
+            ))
 
     def scrape(self) -> list:
         """Main method — scrapes all public repos and saves to Qdrant"""

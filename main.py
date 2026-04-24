@@ -1,7 +1,5 @@
 from dotenv import load_dotenv
 import yaml
-
-
 from agents.orchestrator import create_orchestrator
 from agents.state import AgentState
 
@@ -12,15 +10,11 @@ def load_config(path: str = "config.yaml") -> dict:
         return yaml.safe_load(f)
 
 def main():
-
-
     config = load_config()
     print(f"LLM: {config['llm']['provider']} — {config['llm']['model']}")
-
     orchestrator = create_orchestrator(config)
     initial_state = AgentState()
     orchestrator.invoke(initial_state)
 
-   
 if __name__ == "__main__":
     main()
