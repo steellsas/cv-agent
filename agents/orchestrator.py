@@ -9,6 +9,7 @@ from tools.github_scraper import GitHubScraper
 from agents.cv_agent import CVAgent
 from agents.profile_coordinator import ProfileCoordinator
 from tools.cv_parser import CVParser
+from agents.profile_builder import ProfileBuilder
 
 def create_orchestrator(config: dict):
     llm = get_llm(config)
@@ -18,8 +19,10 @@ def create_orchestrator(config: dict):
     # fact_checker = FactChecker(config)
     cv_agent = CVAgent(config)
     profile_coordinator = ProfileCoordinator(config)
+    profile_builder = ProfileBuilder(config)
     cv_parser = CVParser(config)
     graph = StateGraph(AgentState)
+
 
     def greet_user(state: AgentState) -> dict:
         print("\n" + "="*50)
@@ -27,6 +30,7 @@ def create_orchestrator(config: dict):
         print("="*50)
         print("Type 'profile' — to build your profile")
         print("Type 'linkedin' — to exract form linkedin data")
+        print("Type 'profile'    — to build/update your profile")
         print("Type 'github'    — to import GitHub projects")
         print("Type 'cv'      — to generate a CV")
         print("Type 'quit'    — to exit")
@@ -150,7 +154,12 @@ def create_orchestrator(config: dict):
             return {"user_input": "menu"}
 
         return cv_agent.run(state, master_profile, job_match)
-
+    
+    def handle_profile(state: AgentState) -> dict:
+        profile_builder.run()
+        return {"user_input": "menu"}
+    
+    graph.add_node("profile", handle_profile)
     graph.add_node("masterprofile", handle_masterprofile)
     graph.add_node("upload", handle_upload_cv)
     
@@ -161,7 +170,6 @@ def create_orchestrator(config: dict):
 
     graph.add_node("greet", greet_user)
     graph.add_node("unknown", handle_unknown)
-    graph.add_node("profile", handle_profile)
     graph.add_node("cv", handle_cv)
 
     graph.set_entry_point("greet")

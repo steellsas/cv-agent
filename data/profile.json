@@ -29,7 +29,9 @@
       ],
       "projects": [],
       "impact": "",
-      "key_phrases": []
+      "key_phrases": [
+        "nesu lyderis"
+      ]
     },
     {
       "company": "Freelance",
@@ -52,7 +54,9 @@
       "period": "November 2005 - July 2021",
       "location": "Šiauliai",
       "description": "Combined technical expertise with proactive sales strategies, ensuring that complex telecommunications solutions reached the end customer.",
-      "achievements": [],
+      "achievements": [
+        "collaborated on projects with cross-functional teams"
+      ],
       "skills_used": [
         "Sales",
         "Technical Support",
@@ -60,7 +64,11 @@
       ],
       "projects": [],
       "impact": "",
-      "key_phrases": []
+      "key_phrases": [
+        "working in a team",
+        "sharing information collectively",
+        "checking each other's code"
+      ]
     }
   ],
   "education": [
@@ -159,7 +167,13 @@
       "Google Cloud Platform",
       "Odoo integrations",
       "Clean code",
-      "Scalable code"
+      "Scalable code",
+      "Text-to-Text Bot Development",
+      "API development",
+      "content management systems",
+      "Git",
+      "deep learning",
+      "NLP"
     ],
     "familiar": [
       "Docker",
@@ -181,7 +195,9 @@
       "Sales",
       "Problem Solver",
       "Collaboration",
-      "Sales skills"
+      "Sales skills",
+      "leadership",
+      "team collaboration"
     ],
     "tools": [
       "Google Cloud Platform",
@@ -200,14 +216,17 @@
   "certifications": [],
   "personality": {
     "traits": [
-      "Problem Solver"
+      "Problem Solver",
+      "hard worker"
     ],
-    "work_style": "to find the most efficient way to solve a client's pain point and bridge the gap between business needs and complex technical implementations.",
+    "work_style": "collaborative",
     "motivation": "to solve a client's pain point",
     "authentic_phrases": [
       "I am a Problem Solver who uses AI, Machine Learning, and Python as my primary tools.",
       "My unique strength lies in a blend of deep 'soft skills' from over a decade in sales and the technical 'hard skills' required to build scalable AI solutions.",
-      "AI Engineer with a solid foundation in Information Technology and professional Python development experience."
+      "AI Engineer with a solid foundation in Information Technology and professional Python development experience.",
+      "hard worker toks labiau nei lyderis ir rodantis lyderyste",
+      "working in a team"
     ]
   },
   "languages": [],
